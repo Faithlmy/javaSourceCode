@@ -1,4 +1,4 @@
-package com.java.jdk;
+package com.vic.jdk;
 
 public class JdkMain {
 }
