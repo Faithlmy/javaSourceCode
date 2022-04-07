@@ -1,4 +1,4 @@
-package com.vic.concurrent.inde;
+package com.vic.javabase.concurrent.inde;
 
 public class MyObject {
     private int counter;

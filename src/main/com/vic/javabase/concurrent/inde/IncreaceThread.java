@@ -1,13 +1,14 @@
-package com.vic.concurrent.inde;
+package com.vic.javabase.concurrent.inde;
 
-public class DecreaceThread  implements Runnable{
-
+public class IncreaceThread extends Thread {
     private MyObject myObject;
 
-    public DecreaceThread(MyObject myObject){
+    public IncreaceThread(MyObject myObject){
         this.myObject = myObject;
+
     }
 
+    @Override
     public void run() {
         for (int i = 0; i < 10; i++){
             try {
@@ -15,8 +16,7 @@ public class DecreaceThread  implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            myObject.decreace();
+            myObject.increace();
         }
-
     }
 }

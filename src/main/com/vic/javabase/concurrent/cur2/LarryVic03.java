@@ -1,4 +1,4 @@
-package com.vic.concurrent.cur2;
+package com.vic.javabase.concurrent.cur2;
 
 public class LarryVic03 {
     public static void main(String[] args) {
@@ -13,6 +13,7 @@ public class LarryVic03 {
 
     }
 }
+
 class MyThread implements Runnable{
 
     int x;

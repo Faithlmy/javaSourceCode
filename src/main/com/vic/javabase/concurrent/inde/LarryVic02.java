@@ -1,4 +1,4 @@
-package com.vic.concurrent.inde;
+package com.vic.javabase.concurrent.inde;
 
 /**
  * 交替执行  0101010010

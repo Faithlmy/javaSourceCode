@@ -1,4 +1,4 @@
-package com.vic.concurrent;
+package com.vic.javabase.concurrent;
 
 /**
  *

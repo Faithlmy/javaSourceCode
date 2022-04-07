@@ -1,4 +1,4 @@
-package com.vic.concurrent.hello;
+package com.vic.javabase.concurrent.hello;
 
 public class Mythread2 {
     public static void main(String[] args) {
