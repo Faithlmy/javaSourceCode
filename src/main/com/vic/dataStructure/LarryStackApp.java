@@ -5,6 +5,7 @@ public class LarryStackApp {
 
     }
 }
+
 class LarryStackE<E> {
     private int maxSize; // 栈的最大元素
     private int top;// 栈顶元素
@@ -43,12 +44,14 @@ class LarryStackE<E> {
 }
 
 // 字母反转
-class Reverser{
+class Reverser {
     private String inputStr;
     private String outputStr;
-    public Reverser(String inputStr){
+
+    public Reverser(String inputStr) {
         this.inputStr = inputStr;
     }
+
     public String doRev() {
         int stackSize = inputStr.length();
         LarryStackE<String> stringLarryStackE = new LarryStackE<String>(stackSize);
