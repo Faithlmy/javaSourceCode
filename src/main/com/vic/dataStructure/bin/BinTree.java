@@ -1,6 +1,6 @@
 package com.vic.dataStructure.bin;
 
-public class BinTree {
+public class BinTree extends AbstractTree{
     private Node root; // 根节点
 
     @Override
@@ -53,6 +53,7 @@ public class BinTree {
         count--;
         Node curNode = root;
         Node parentNode = root;
+
         boolean isLeft = false;  //当前节点是否为左节点
 
         while (curNode.data != value){
@@ -89,6 +90,8 @@ public class BinTree {
                 parentNode.rightNode = curNode.rightNode;
             }
         } else if (curNode.leftNode != null && curNode.rightNode == null) {
+
+
             if (root == curNode) {
                 root = curNode.leftNode;
             } else if (isLeft) {
@@ -97,36 +100,60 @@ public class BinTree {
                 parentNode.rightNode = curNode.leftNode;
             }
         }
+
         //3 当前节点有两个节点
         if(curNode.leftNode != null && curNode.rightNode != null){
-            //获取删除节点的后继结点
-            Node successor = getSuccessor(curNode);
-            if (root == curNode) {
-                root = successor;
-            } else if (isLeft) {
-                parentNode.leftNode = successor;
-            } else {
-                parentNode.rightNode = successor;
-            }
+            int data = parentNode.data;
+            Node curLeftMax = getCurLeftMax(curNode.leftNode, curNode);
+            parentNode.leftNode = curLeftMax;
         }
         return false;
     }
-    public Node getSuccessor(Node delNode) {
+    public Node getCurLeftMax(Node curLeft, Node cur){
+        Node curLeftNode = curLeft;
+        while (curLeftNode != null && curLeftNode.rightNode != null){
+            curLeftNode = curLeftNode.rightNode;
+        }
+        // 1. 当前节点没有左子树
+        if (curLeftNode.leftNode == null && curLeftNode.rightNode == null){
+            Node parent = getParent(curLeft, curLeftNode);
+            parent.rightNode = null;
 
-        Node successorParent = delNode;
-        Node successor = delNode;
-        Node current = delNode.rightNode;
-        while (current != null) {
-            successorParent = successor;
-            successor = current;
-            current = current.leftNode;
+            curLeftNode.leftNode = curLeft;
+            curLeftNode.rightNode = cur.rightNode;
+            return curLeftNode;
         }
-        if (successor != delNode.rightNode) {
-            successorParent.leftNode = successor.rightNode;
-            successor.rightNode = delNode.rightNode;
-            successor.leftNode = delNode.leftNode;
+
+        // 2. 当前节点有左子树
+        if (curLeftNode.leftNode != null){
+            Node parent = getParent(curLeft, curLeftNode);
+            if (parent.data > curLeftNode.leftNode.data){
+                parent.leftNode = curLeftNode.leftNode;
+                parent.rightNode = null;
+            }
+            if (parent.data <= curLeftNode.leftNode.data){
+                parent.rightNode = curLeftNode.leftNode;
+                if (curLeft.data >= curLeftNode.data){
+                    curLeftNode.rightNode = curLeft;
+                }
+                if (curLeft.data < curLeftNode.data){
+                    curLeftNode.leftNode = curLeft;
+                    curLeftNode.rightNode = cur.rightNode;
+                }
+
+            }
         }
-        return successor;
+
+
+        return curLeftNode;
     }
-
+    // 获取当前节点的父节点
+    public Node getParent(Node nodeAll, Node cur){
+        if(nodeAll == null ||nodeAll.leftNode == cur || nodeAll.rightNode == cur) return nodeAll;
+        Node left = getParent(nodeAll.leftNode, cur);
+        if(left != null) return left;
+        Node right = getParent(nodeAll.rightNode, cur);
+        if(right != null) return right;
+        return left;
+    }
 }
