@@ -33,4 +33,35 @@ public class SortShow extends AbstrctSort {
         }
         return num;
     }
+
+    @Override
+    public int[] QuickSort(int[] arr, int start, int end) {
+        if (start < end) {
+            //把数组的第0个数作为标准数
+            int stared = arr[start];
+            //记录要排序的下标
+            int low = start;
+            int height = end;
+            //循环找出比标准数大和比标准数小的数
+            while (low < height) {
+                //右边数字比标准数大
+                while (low < height && stared <= arr[height]) {
+                    height--;
+                }
+                //用右边的数字替换左边的数字
+                arr[low] = arr[height];
+                //左边数字比标准数小
+                while (low < height && stared >= arr[low]) {
+                    low++;
+                }
+                //用左边的数字替换右边的数字
+                arr[height] = arr[low];
+            }
+            arr[low] = stared;
+            QuickSort(arr, start, low);
+            QuickSort(arr, low + 1, height);
+        }
+        return arr;
+
+    }
 }
