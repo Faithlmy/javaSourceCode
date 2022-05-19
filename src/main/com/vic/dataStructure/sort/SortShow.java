@@ -89,6 +89,7 @@ public class SortShow extends AbstrctSort {
     }
 
 
+
     public static void adjustHeap(int[] arr, int i, int length) {
         int temp = arr[i];//先取出当前元素的值，保存在临时变量中
         //开始调整
@@ -108,7 +109,85 @@ public class SortShow extends AbstrctSort {
         arr[i] = temp;//将temp的值放在调整后的位置
     }
 
+
+    @Override
+    public int[] MergeSort(int[] arr) {
+        _mergeSort(arr, 0, arr.length);
+        return null;
+    }
+
+    // right - left 为区间中的元素个数
+    public static void _mergeSort(int[] arr, int left, int right){
+        if(right - left <= 1){
+            //如果当前待排序的区间里只有一个元素，或者没有元素
+            //就直接返回，不需要任何排序动作
+            return;
+        }
+        //先把当前 [left, right) 区间一分为二
+        int mid = (left + right) / 2;
+        //分成了两个区间
+        //[left, mid)  [mid, right)
+        //当左侧区间的  _mergeSort 执行完毕后，
+        //就认为 [left, mid) 就已经是有序区间了
+        _mergeSort(arr, left, mid);
+        //当右侧区间的  _mergeSort 执行完毕后，
+        //就认为 [mid, right) 就已经是有序区间了
+        _mergeSort(arr, mid, right);
+        //接下来把左右两个有序数组，合并到一起！
+        merge(arr, left, mid, right);
+    }
+
+    // merge 方法本身功能是把两个有序数组合并成一个有序数组。
+    // 待合并的两个数组就分别是：
+    // [left, mid)
+    // [mid, right)
+    public static void merge(int[] arr, int left, int mid, int right) {
+        //创建一个临时的数组，用来存放合并结果
+        //我们是希望这个数组能存下合并后的结果  right - left
+        int[] tmp = new int[right - left];
+        //当前要把新的数组元素放到 tmp 数组的哪个下标上
+        int tmpSize = 0;
+        int l = left;
+        int r = mid;
+        while (l < mid && r < right) {
+            //归并排序是稳定排序！！！
+            //此处的条件不要写作 arr[l] < arr[r]
+            if (arr[l] <= arr[r]) {
+                //arr[l]比较小，就把这个元素先插入到 tmp 数组末尾
+                tmp[tmpSize] = arr[l];
+                tmpSize++;
+                l++;
+            } else {
+                //arr[r] 比较小，就把这个数组插入到 tmp 数组末尾
+                tmp[tmpSize] = arr[r];
+                tmpSize++;
+                r++;
+            }
+        }
+        //当其中一个数组遍历完了之后，就把另外一个数组的剩余部分都拷贝到 临时空间tmp
+        while (l < mid) {
+            //剩下的都是左半边数组
+            tmp[tmpSize] = arr[l];
+            tmpSize++;
+            l++;
+        }
+        while (r < right) {
+            //剩下的是右半边数组
+            tmp[tmpSize] = arr[r];
+            tmpSize++;
+            r++;
+        }
+        //最后一步，再把临时空间的内容都拷贝回参数数组
+        //需要把 tmp 中的内容拷贝回 arr 的 [left, right) 这一段空间里
+        // [left, right) 这个空间很可能不是从 0 开始的
+        for (int i = 0; i < tmp.length; i++) {
+            arr[left + i] = tmp[i];
+        }
+    }
+
 }
+
+
 
 
 
