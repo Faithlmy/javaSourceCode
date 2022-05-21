@@ -8,6 +8,18 @@
     <groupId>com.vic</groupId>
     <artifactId>vic</artifactId>
     <version>0.0.1</version>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.3.17</version>
+        </dependency>
+
+    </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
@@ -20,7 +32,5 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-    </dependencies>
 
 </project>
