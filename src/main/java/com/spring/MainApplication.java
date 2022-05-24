@@ -1,4 +1,4 @@
-package java.spring;
+package com.spring;
 
 public class MainApplication {
 }
