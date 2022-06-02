@@ -1,11 +1,6 @@
 package com.spring;
 
-public class MyApplicationContext implements ClassPathXmlApplicationContext{
-    public MyApplicationContext(String... configLocations) throws BeansException {
-        super(configLocations);
-    }
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-    protected void initPropertySources() {
-        getEnvironment().setRequiredProperties("ljj");
-    }
+public class MyApplicationContext extends ClassPathXmlApplicationContext {
 }

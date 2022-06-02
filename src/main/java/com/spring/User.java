@@ -1,7 +1,19 @@
 package com.spring;
 
 public class User {
+    private int id;
     private String name;
+    private String address;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
 
     public String getName() {
         return name;
@@ -19,6 +31,6 @@ public class User {
         this.address = address;
     }
 
-    private String address;
+
 
 }
