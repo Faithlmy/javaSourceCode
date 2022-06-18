@@ -10,5 +10,19 @@
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+    <aop:config>
+        <!--定义切点函数-->
+        <aop:pointcut id="rentPointCut" expression="execution(* com.spring.bk004.Host.rent())"/>
+        ​
+        <!-- 定义切面 order 定义优先级,值越小优先级越大-->
+        <aop:aspect ref="proxy" order="0">
+            <!--前置通知-->
+            <aop:before method="seeHouse" pointcut-ref="rentPointCut" />
+            <!--环绕通知-->
+            <aop:around method="getMoney" pointcut-ref="rentPointCut" />
+            <!--后置通知-->
+            <aop:after method="fare" pointcut-ref="rentPointCut" />
+        </aop:aspect>
+    </aop:config>
 
 </beans>
