@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="User" class="com.spring.bk003.User">
+        <property name="name" value="lmy"></property>
+        <property name="id" value="2"></property>
+    </bean>
+    <bean id="myPost" class="com.spring.bk003.MyBeanFactoryPostProcessor"></bean>
+    <bean id="uPost" class="com.spring.bk003.UserFactoryPostProcessor"></bean>
+</beans>
