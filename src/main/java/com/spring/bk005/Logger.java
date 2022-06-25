@@ -1,6 +1,8 @@
 package com.spring.bk005;
 
 
+import org.aspectj.lang.ProceedingJoinPoint;
+
 public class Logger {
     /**
      * 用于打印日志信息，计划让其在切入点方法执行之前执行
